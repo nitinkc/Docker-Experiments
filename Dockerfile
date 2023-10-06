@@ -16,6 +16,6 @@ RUN ./gradlew clean build
 # Copy the JAR file from the build output directory to /app
 #RUN cp ./build/libs/docker-1.0-SNAPSHOT.jar /app/
 # Copy the JAR file from the current directory to /app
-ADD build/libs/docker-1.0-SNAPSHOT.jar /app/app.jar
+ADD build/libs/*.jar /app/app.jar
 
 CMD ["java", "-jar", "app.jar"]
