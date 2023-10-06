@@ -13,6 +13,6 @@ COPY . /app/
 RUN ./gradlew build
 
 # Copy the JAR file from the build output directory to /app
-RUN cp build/libs/*.jar /app/
+RUN cp build/libs/docker-1.0-SNAPSHOT.jar /app/
 
-CMD ["java", "-jar", "*.jar"]
+CMD ["java", "-jar", "docker-1.0-SNAPSHOT.jar"]
