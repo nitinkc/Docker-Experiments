@@ -7,16 +7,15 @@ WORKDIR /app
 
 # Copy the project files into the container
 # Any subsequent RUN, CMD, ENTRYPOINT, COPY, and ADD instructions will be executed in /app
-# COPY . /app/
+COPY . /app/
 
 # Run the Gradle build command inside the container
 RUN ./gradlew clean build
 
 
-
 # Copy the JAR file from the build output directory to /app
 #RUN cp ./build/libs/docker-1.0-SNAPSHOT.jar /app/
 # Copy the JAR file from the current directory to /app
-COPY build/libs/docker-1.0-SNAPSHOT.jar /app/
+ADD build/libs/docker-1.0-SNAPSHOT.jar /app/app.jar
 
-CMD ["java", "-jar", "docker-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]
