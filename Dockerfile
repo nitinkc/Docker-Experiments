@@ -1,20 +1,14 @@
-# syntax=docker/dockerfile:1
+#Build stage
+FROM gradle:latest AS BUILD
+WORKDIR /usr/app/
+COPY . .
+RUN gradle clean build
 
-FROM eclipse-temurin:17-jdk-jammy
-
-# specifies the directory where the command will be executed when you run a container based on the resulting image.
-WORKDIR /app
-COPY . /app/
-
-# Run the Gradle build command inside the container
-RUN ./gradlew clean build
-
-# Copy the project files into the container
-# Any subsequent RUN, CMD, ENTRYPOINT, COPY, and ADD instructions will be executed in /app
-#COPY . /app/
-# Copy the JAR file from your host into the container at /app
-#COPY build/libs/*.jar /app/app.jar
-
-ADD build/libs/java-docker-experiments-1.0-SNAPSHOT.jar .
-
-CMD ["java", "-jar", "app.jar"]
+# Package stage
+FROM openjdk:latest
+ENV JAR_NAME=java-docker-experiments-1.0.jar
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY --from=BUILD $APP_HOME .
+EXPOSE 8080
+ENTRYPOINT exec java -jar $APP_HOME/build/libs/$JAR_NAME
