@@ -10,5 +10,4 @@ ENV JAR_NAME=java-docker-experiments-1.0.jar
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY --from=BUILD $APP_HOME .
-EXPOSE 8080
 ENTRYPOINT exec java -jar $APP_HOME/build/libs/$JAR_NAME
