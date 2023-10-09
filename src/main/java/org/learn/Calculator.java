@@ -32,6 +32,9 @@ public class Calculator {
                 result = a1*a2;
                 break;
             case "div":
+                if (a2 == 0) {
+                    //throw new ArithmeticException("Division by zero is not allowed");
+                }
                 result= a1/a2;
                 break;
             default:
