@@ -48,5 +48,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:simple-java-app-$latest
-#         tags: ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:simple-java-app-$CIRCLE_BUILD_NUM
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/simple-java-app:latest
+          # TODO: tags: ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:simple-java-app-$SOME_BUILD_NUM
