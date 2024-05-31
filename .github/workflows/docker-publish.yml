@@ -1,8 +1,11 @@
 name: Publish Image to Dockerhub
 
+#0 0 represents the minute and hour (midnight).
+#1 represents the day of the month (first day of the month).
+#1,4,7,10 represents the months (January, April, July, October).
 on:
   schedule:
-    - cron: '21 19 * * *'
+    - cron: '0 0 1 1,4,7,10 *'
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
