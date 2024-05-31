@@ -1,4 +1,4 @@
-name: Docker
+name: Publish Image to Dockerhub
 
 on:
   schedule:
